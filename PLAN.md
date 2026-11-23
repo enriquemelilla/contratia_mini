@@ -186,7 +186,7 @@ erDiagram
 - [x] **Fase 1B: Creación de Skills Personalizadas (`api-rest` e `interfaces-crud`)**
 - [x] **Fase 2: Backend y API REST**
 - [x] **Fase 3: Interfaz de Usuario (Frontend Vanilla)**
-- [ ] **Fase 4: Lógica de Integración Cliente-Servidor (Fetch API)**
+- [x] **Fase 4: Lógica de Integración Cliente-Servidor (Fetch API)**
 - [ ] **Fase 5: Pruebas de Integración, Validación y Cierre**
 
 ---
@@ -229,12 +229,12 @@ erDiagram
   - [x] Componentes transversales BEM: modales (`.modal`), botones (`.btn`), tablas (`.data-table`), formularios (`.form-group`) y notificaciones flotantes (`.toast`).
 
 #### 🔹 Fase 4: Lógica de Integración Cliente-Servidor (Fetch API)
-*Estado: Pendiente (Guiada por Skills `api-rest` e `interfaces-crud`)*
-- [ ] Implementar módulo de comunicación con la API usando `fetch` (`public/js/api.js`).
-- [ ] Implementar controlador de eventos y renderizado reactivo del DOM (`public/js/app.js`).
-- [ ] Conectar formularios con validaciones en cliente y envío asíncrono (`POST`/`PUT`).
-- [ ] Implementar acciones rápidas de cambio de estado de incidencias (Abierta → En progreso → Resuelta).
-- [ ] Añadir feedback visual (mensajes de confirmación, alertas de error y estados de carga).
+*Estado: Completada (Guiada por Skills `api-rest` e `interfaces-crud`)*
+- [x] Implementar módulo de comunicación con la API usando `fetch` (`public/js/api.js`).
+- [x] Implementar controlador de eventos y renderizado reactivo del DOM (`public/js/app.js`).
+- [x] Conectar formularios con validaciones en cliente y envío asíncrono (`POST`/`PUT`).
+- [x] Implementar acciones rápidas de cambio de estado de incidencias (Abierta → En progreso → Resuelta).
+- [x] Añadir feedback visual (mensajes de confirmación, alertas de error y estados de carga).
 
 #### 🔹 Fase 5: Pruebas de Integración, Validación y Cierre
 *Estado: Pendiente*
@@ -245,4 +245,4 @@ erDiagram
 
 ---
 
-> ⚠️ **Estado actual:** Fases 1, 1B, 2 y 3 completadas con éxito. A la espera de tu revisión antes de iniciar la Fase 4 (Lógica de Integración Cliente-Servidor con Fetch API).
+> ⚠️ **Estado actual:** Fases 1, 1B, 2, 3 y 4 completadas con éxito. A la espera de tu revisión antes de iniciar la Fase 5 (Pruebas de Integración, Validación Final y Cierre con README.md).
