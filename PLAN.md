@@ -184,7 +184,7 @@ erDiagram
 ### 📊 Resumen de Progreso
 - [x] **Fase 1: Estructura del Proyecto y Base de Datos**
 - [x] **Fase 1B: Creación de Skills Personalizadas (`api-rest` e `interfaces-crud`)**
-- [ ] **Fase 2: Backend y API REST**
+- [x] **Fase 2: Backend y API REST**
 - [ ] **Fase 3: Interfaz de Usuario (Frontend Vanilla)**
 - [ ] **Fase 4: Lógica de Integración Cliente-Servidor (Fetch API)**
 - [ ] **Fase 5: Pruebas de Integración, Validación y Cierre**
@@ -209,13 +209,13 @@ erDiagram
 - [x] Verificar frontmatter YAML y accesibilidad de las Skills en el entorno de desarrollo.
 
 #### 🔹 Fase 2: Backend y API REST
-*Estado: Pendiente (Guiada por Skill `api-rest`)*
-- [ ] Configurar servidor Express y middlewares (JSON, servicio de archivos estáticos, gestión centralizada de errores).
-- [ ] Implementar capa de acceso a datos/consultas SQLite para `instalaciones`, `equipos` e `incidencias`.
-- [ ] Desarrollar endpoints CRUD para **Instalaciones** (`GET`, `POST`, `PUT`, `DELETE`).
-- [ ] Desarrollar endpoints CRUD para **Equipos** (`GET`, `POST`, `PUT`, `DELETE`, filtrado por instalación).
-- [ ] Desarrollar endpoints CRUD para **Incidencias** (`GET`, `POST`, `PUT`, `DELETE`, cambio de estado y resolución).
-- [ ] Desarrollar endpoint de métricas/resumen para el panel de control (`/api/dashboard/stats`).
+*Estado: Completada (Guiada por Skill `api-rest`)*
+- [x] Configurar servidor Express y middlewares (JSON, servicio de archivos estáticos, gestión centralizada de errores).
+- [x] Implementar capa de acceso a datos/consultas SQLite para `instalaciones`, `equipos` e `incidencias`.
+- [x] Desarrollar endpoints CRUD para **Instalaciones** (`GET`, `POST`, `PUT`, `DELETE`).
+- [x] Desarrollar endpoints CRUD para **Equipos** (`GET`, `POST`, `PUT`, `DELETE`, filtrado por instalación).
+- [x] Desarrollar endpoints CRUD para **Incidencias** (`GET`, `POST`, `PUT`, `DELETE`, cambio de estado y resolución).
+- [x] Desarrollar endpoint de métricas/resumen para el panel de control (`/api/dashboard/stats`).
 
 #### 🔹 Fase 3: Interfaz de Usuario (Frontend Vanilla)
 *Estado: Pendiente (Guiada por Skill `interfaces-crud`)*
@@ -244,4 +244,4 @@ erDiagram
 
 ---
 
-> ⚠️ **Estado actual:** Fase 1 y Fase 1B completadas con éxito. A la espera de tu revisión de las Skills antes de continuar con la Fase 2.
+> ⚠️ **Estado actual:** Fases 1, 1B y 2 completadas con éxito. A la espera de tu revisión antes de iniciar la Fase 3 (Interfaz de Usuario Frontend Vanilla).
