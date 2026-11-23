@@ -176,7 +176,8 @@ El proyecto cuenta con dos Skills de desarrollo reutilizables ubicadas en `.agen
    * Patrón Fetch nativo con `async/await`, control de botones y notificaciones flotantes (Toasts).
    * Modales unificados para alta/edición y confirmación de borrados críticos.
 
-Las evidencias y justificación técnica para la evaluación docente se encuentran detalladas en [docs/EVIDENCIAS_SKILLS.md](docs/EVIDENCIAS_SKILLS.md).
+Las evidencias y justificación técnica para la evaluación docente se encuentran detalladas en [docs/EVIDENCIAS_SKILLS.md](docs/EVIDENCIAS_SKILLS.md).  
+El registro íntegro de interacciones y prompts mantenidos con el asistente de inteligencia artificial para la construcción de todo el proyecto se encuentra en [CONVERSACION_ANTIGRAVITY.md](CONVERSACION_ANTIGRAVITY.md).
 
 ---
 
