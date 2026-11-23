@@ -187,7 +187,7 @@ erDiagram
 - [x] **Fase 2: Backend y API REST**
 - [x] **Fase 3: Interfaz de Usuario (Frontend Vanilla)**
 - [x] **Fase 4: Lógica de Integración Cliente-Servidor (Fetch API)**
-- [ ] **Fase 5: Pruebas de Integración, Validación y Cierre**
+- [x] **Fase 5: Pruebas de Integración, Validación y Cierre**
 
 ---
 
@@ -237,12 +237,13 @@ erDiagram
 - [x] Añadir feedback visual (mensajes de confirmación, alertas de error y estados de carga).
 
 #### 🔹 Fase 5: Pruebas de Integración, Validación y Cierre
-*Estado: Pendiente*
-- [ ] Verificar el cumplimiento estricto de los criterios de aceptación (CA-01 a CA-04).
-- [ ] Comprobar integridad referencial y borrado en cascada en SQLite.
-- [ ] Validar respuestas HTTP y manejo de errores (entradas inválidas, registros no encontrados).
-- [ ] Redactar `README.md` con guía paso a paso para instalación, ejecución local y descripción de la API.
+*Estado: Completada (Batería automatizada con Jest y Supertest)*
+- [x] Configurar entorno de pruebas con **Jest** y **Supertest** en `package.json`.
+- [x] Desarrollar suite de tests en `tests/api.test.js` para verificar el cumplimiento estricto de los criterios de aceptación (CA-01 a CA-04).
+- [x] Comprobar integridad referencial y borrado en cascada en SQLite mediante assertions de Supertest.
+- [x] Validar respuestas HTTP, códigos de estado (`200`, `201`, `400`, `404`, `409`) y manejo de errores.
+- [x] Redactar `README.md` completo con guía de instalación, ejecución local (`npm start`, `npm test`), descripción de la API y documentación de las Skills creadas.
 
 ---
 
-> ⚠️ **Estado actual:** Fases 1, 1B, 2, 3 y 4 completadas con éxito. A la espera de tu revisión antes de iniciar la Fase 5 (Pruebas de Integración, Validación Final y Cierre con README.md).
+> ✅ **Estado actual:** ¡Proyecto completado al 100%! Todas las fases (1, 1B, 2, 3, 4 y 5) han sido ejecutadas, verificadas y documentadas con éxito.
