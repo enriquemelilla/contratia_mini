@@ -55,7 +55,7 @@ flowchart TD
         DB_CONFIG --> SQLITE
     end
 
-    API_CLIENT <-->|HTTP / JSON (REST)| SERVER
+    API_CLIENT <-->|Peticiones HTTP / Respuestas JSON| SERVER
 ```
 
 ---
@@ -64,36 +64,36 @@ flowchart TD
 
 ```mermaid
 erDiagram
-    INSTALACIONES ||--o{ EQUIPOS : "alberga (1:N)"
-    EQUIPOS ||--o{ INCIDENCIAS : "registra (1:N)"
+    INSTALACIONES ||--o{ EQUIPOS : contiene
+    EQUIPOS ||--o{ INCIDENCIAS : registra
 
     INSTALACIONES {
-        INTEGER id PK "Autoincrement"
-        TEXT nombre "NOT NULL"
-        TEXT direccion "NOT NULL"
-        TEXT tipo "NOT NULL"
-        DATETIME created_at "DEFAULT CURRENT_TIMESTAMP"
+        INTEGER id PK
+        TEXT nombre
+        TEXT direccion
+        TEXT tipo
+        DATETIME created_at
     }
 
     EQUIPOS {
-        INTEGER id PK "Autoincrement"
-        INTEGER instalacion_id FK "REFERENCES instalaciones(id) ON DELETE CASCADE"
-        TEXT nombre "NOT NULL"
-        TEXT codigo_serie "UNIQUE NOT NULL"
-        TEXT tipo_equipo "NOT NULL"
-        TEXT estado "CHECK (OPERATIVO, AVERIADO, EN_MANTENIMIENTO)"
-        DATETIME created_at "DEFAULT CURRENT_TIMESTAMP"
+        INTEGER id PK
+        INTEGER instalacion_id FK
+        TEXT nombre
+        TEXT codigo_serie
+        TEXT tipo_equipo
+        TEXT estado
+        DATETIME created_at
     }
 
     INCIDENCIAS {
-        INTEGER id PK "Autoincrement"
-        INTEGER equipo_id FK "REFERENCES equipos(id) ON DELETE CASCADE"
-        TEXT titulo "NOT NULL"
-        TEXT descripcion "NOT NULL"
-        TEXT prioridad "CHECK (BAJA, MEDIA, ALTA, CRITICA)"
-        TEXT estado "CHECK (ABIERTA, EN_PROGRESO, RESUELTA, CERRADA)"
-        DATETIME fecha_reporte "DEFAULT CURRENT_TIMESTAMP"
-        DATETIME fecha_resolucion "NULL"
+        INTEGER id PK
+        INTEGER equipo_id FK
+        TEXT titulo
+        TEXT descripcion
+        TEXT prioridad
+        TEXT estado
+        DATETIME fecha_reporte
+        DATETIME fecha_resolucion
     }
 ```
 
@@ -164,19 +164,19 @@ Todas las respuestas de la API siguen el envoltorio JSON estándar:
 
 El proyecto cuenta con dos Skills de desarrollo reutilizables ubicadas en `.agents/skills/`:
 
-1. **`api-rest`** ([.agents/skills/api-rest/SKILL.md](file:///.agents/skills/api-rest/SKILL.md)):
+1. **`api-rest`** ([.agents/skills/api-rest/SKILL.md](.agents/skills/api-rest/SKILL.md)):
    * Pautas de diseño RESTful, verbos y códigos HTTP estándar.
    * Sentencias preparadas SQLite obligatorias para prevención de inyección SQL.
    * Manejo de transacciones atómicas para sincronización de estados.
    * Middleware centralizado de errores y rutas 404.
 
-2. **`interfaces-crud`** ([.agents/skills/interfaces-crud/SKILL.md](file:///.agents/skills/interfaces-crud/SKILL.md)):
+2. **`interfaces-crud`** ([.agents/skills/interfaces-crud/SKILL.md](.agents/skills/interfaces-crud/SKILL.md)):
    * Estructura semántica HTML5 y accesibilidad (roles ARIA, labels vinculados).
    * Arquitectura CSS modular basada en **BEM (Bloque__Elemento--Modificador)** con variables para estados operativos.
    * Patrón Fetch nativo con `async/await`, control de botones y notificaciones flotantes (Toasts).
    * Modales unificados para alta/edición y confirmación de borrados críticos.
 
-Las evidencias y justificación técnica para la evaluación docente se encuentran detalladas en [docs/EVIDENCIAS_SKILLS.md](file:///docs/EVIDENCIAS_SKILLS.md).
+Las evidencias y justificación técnica para la evaluación docente se encuentran detalladas en [docs/EVIDENCIAS_SKILLS.md](docs/EVIDENCIAS_SKILLS.md).
 
 ---
 

@@ -179,7 +179,7 @@ erDiagram
 > [!NOTE]
 > **Ajuste de Planificación (Corrección Requisito 2):**  
 > Tras finalizar la **Fase 1** y revisar el enunciado de la práctica, se constató la omisión del **Requisito 2** (*Creación y utilización de al menos una Skill personalizada*).  
-> Para solventarlo con rigor técnico antes de desarrollar la lógica de negocio, se añadió la **Fase 1B: Creación de Skills Personalizadas**. En ella se crearon dos Skills (`api-rest` e `interfaces-crud`) en `.agents/skills/` que pautan las buenas prácticas para las fases subsiguientes. Todas las evidencias quedan registradas en [docs/EVIDENCIAS_SKILLS.md](file:///e:/proyectos%20DAW%202/contratia_mini/docs/EVIDENCIAS_SKILLS.md).
+> Para solventarlo con rigor técnico antes de desarrollar la lógica de negocio, se añadió la **Fase 1B: Creación de Skills Personalizadas**. En ella se crearon dos Skills (`api-rest` e `interfaces-crud`) en `.agents/skills/` que pautan las buenas prácticas para las fases subsiguientes. Todas las evidencias quedan registradas en [docs/EVIDENCIAS_SKILLS.md](docs/EVIDENCIAS_SKILLS.md).
 
 ### 📊 Resumen de Progreso
 - [x] **Fase 1: Estructura del Proyecto y Base de Datos**
@@ -203,9 +203,9 @@ erDiagram
 #### 🔹 Fase 1B: Creación de Skills Personalizadas
 *Estado: Completada*
 - [x] Localizar el directorio oficial de Skills para proyectos Antigravity (`.agents/skills/`).
-- [x] Diseñar y redactar [api-rest/SKILL.md](file:///e:/proyectos%20DAW%202/contratia_mini/.agents/skills/api-rest/SKILL.md) (rutas, verbos HTTP, códigos de estado, validación, transacciones, SQLite e integridad referencial).
-- [x] Diseñar y redactar [interfaces-crud/SKILL.md](file:///e:/proyectos%20DAW%202/contratia_mini/.agents/skills/interfaces-crud/SKILL.md) (HTML5 semántico, CSS3 modular/responsive, Vanilla JS, formularios, modales, a11y y Fetch API).
-- [x] Generar documento de evidencias docentes en [docs/EVIDENCIAS_SKILLS.md](file:///e:/proyectos%20DAW%202/contratia_mini/docs/EVIDENCIAS_SKILLS.md).
+- [x] Diseñar y redactar [api-rest/SKILL.md](.agents/skills/api-rest/SKILL.md) (rutas, verbos HTTP, códigos de estado, validación, transacciones, SQLite e integridad referencial).
+- [x] Diseñar y redactar [interfaces-crud/SKILL.md](.agents/skills/interfaces-crud/SKILL.md) (HTML5 semántico, CSS3 modular/responsive, Vanilla JS, formularios, modales, a11y y Fetch API).
+- [x] Generar documento de evidencias docentes en [docs/EVIDENCIAS_SKILLS.md](docs/EVIDENCIAS_SKILLS.md).
 - [x] Verificar frontmatter YAML y accesibilidad de las Skills en el entorno de desarrollo.
 
 #### 🔹 Fase 2: Backend y API REST
