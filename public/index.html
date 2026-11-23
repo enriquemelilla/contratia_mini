@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contratia Mini - Sistema de gestión de instalaciones, equipos e incidencias">
+  <title>Contratia Mini | Gestión de Mantenimiento</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Favicon ligero mediante SVG en data-uri -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+</head>
+<body>
+  <!-- Contenedor principal BEM: .app-container -->
+  <div class="app-container">
+
+    <!-- Encabezado de la aplicación BEM: .app-header -->
+    <header class="app-header">
+      <div class="app-header__brand">
+        <div class="app-header__icon" aria-hidden="true">🏢</div>
+        <div class="app-header__info">
+          <h1 class="app-header__title">Contratia Mini</h1>
+          <p class="app-header__subtitle">Gestión Integral de Instalaciones, Equipos e Incidencias</p>
+        </div>
+      </div>
+      
+      <!-- Navegación por pestañas BEM: .nav-tabs -->
+      <nav class="nav-tabs" aria-label="Navegación principal">
+        <ul class="nav-tabs__list" role="tablist">
+          <li class="nav-tabs__item" role="presentation">
+            <button class="nav-tabs__btn nav-tabs__btn--active" id="tab-dashboard" role="tab" aria-selected="true" aria-controls="view-dashboard" data-view="dashboard">
+              <span class="nav-tabs__icon" aria-hidden="true">📊</span>
+              <span class="nav-tabs__text">Dashboard</span>
+            </button>
+          </li>
+          <li class="nav-tabs__item" role="presentation">
+            <button class="nav-tabs__btn" id="tab-instalaciones" role="tab" aria-selected="false" aria-controls="view-instalaciones" data-view="instalaciones">
+              <span class="nav-tabs__icon" aria-hidden="true">🏛️</span>
+              <span class="nav-tabs__text">Instalaciones</span>
+            </button>
+          </li>
+          <li class="nav-tabs__item" role="presentation">
+            <button class="nav-tabs__btn" id="tab-equipos" role="tab" aria-selected="false" aria-controls="view-equipos" data-view="equipos">
+              <span class="nav-tabs__icon" aria-hidden="true">⚙️</span>
+              <span class="nav-tabs__text">Equipos</span>
+            </button>
+          </li>
+          <li class="nav-tabs__item" role="presentation">
+            <button class="nav-tabs__btn" id="tab-incidencias" role="tab" aria-selected="false" aria-controls="view-incidencias" data-view="incidencias">
+              <span class="nav-tabs__icon" aria-hidden="true">⚠️</span>
+              <span class="nav-tabs__text">Incidencias</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Contenido principal BEM: .app-main -->
+    <main class="app-main">
+
+      <!-- ========================================== -->
+      <!-- VISTA 1: DASHBOARD (.view-section)        -->
+      <!-- ========================================== -->
+      <section class="view-section view-section--active" id="view-dashboard" role="tabpanel" aria-labelledby="tab-dashboard">
+        <header class="section-header">
+          <div>
+            <h2 class="section-header__title">Panel de Control General</h2>
+            <p class="section-header__description">Métricas de infraestructura técnica y averías activas en tiempo real.</p>
+          </div>
+          <div class="section-header__actions">
+            <button class="btn btn--outline btn--sm" id="btn-refresh-dashboard" type="button" title="Actualizar datos">
+              🔄 Actualizar
+            </button>
+          </div>
+        </header>
+
+        <!-- Bloque métricas BEM: .metrics-grid -->
+        <div class="metrics-grid">
+          <article class="metric-card metric-card--primary">
+            <div class="metric-card__header">
+              <span class="metric-card__label">Instalaciones</span>
+              <span class="metric-card__icon" aria-hidden="true">🏛️</span>
+            </div>
+            <div class="metric-card__value" id="stat-instalaciones">0</div>
+            <p class="metric-card__footer">Edificios y centros registrados</p>
+          </article>
+
+          <article class="metric-card metric-card--info">
+            <div class="metric-card__header">
+              <span class="metric-card__label">Equipos Totales</span>
+              <span class="metric-card__icon" aria-hidden="true">⚙️</span>
+            </div>
+            <div class="metric-card__value" id="stat-equipos-total">0</div>
+            <p class="metric-card__footer" id="stat-equipos-operativos-text">0 operativos</p>
+          </article>
+
+          <article class="metric-card metric-card--danger">
+            <div class="metric-card__header">
+              <span class="metric-card__label">Equipos Averiados</span>
+              <span class="metric-card__icon" aria-hidden="true">🚨</span>
+            </div>
+            <div class="metric-card__value" id="stat-equipos-averiados">0</div>
+            <p class="metric-card__footer">Fuera de servicio</p>
+          </article>
+
+          <article class="metric-card metric-card--warning">
+            <div class="metric-card__header">
+              <span class="metric-card__label">Incidencias Abiertas</span>
+              <span class="metric-card__icon" aria-hidden="true">⚠️</span>
+            </div>
+            <div class="metric-card__value" id="stat-incidencias-activas">0</div>
+            <p class="metric-card__footer" id="stat-incidencias-criticas-text">0 de prioridad alta/crítica</p>
+          </article>
+        </div>
+
+        <!-- Bloque últimas incidencias BEM: .dashboard-activity -->
+        <div class="card dashboard-activity">
+          <div class="card__header">
+            <h3 class="card__title">Últimas Averías e Incidencias Reportadas</h3>
+            <button class="btn btn--outline btn--sm" id="btn-goto-incidencias" type="button">Ver todas →</button>
+          </div>
+          <div class="card__body">
+            <div class="data-table-wrapper">
+              <table class="data-table" id="table-dashboard-incidencias" aria-label="Últimas incidencias">
+                <thead class="data-table__head">
+                  <tr class="data-table__row">
+                    <th class="data-table__th">Fecha</th>
+                    <th class="data-table__th">Instalación</th>
+                    <th class="data-table__th">Equipo</th>
+                    <th class="data-table__th">Incidencia</th>
+                    <th class="data-table__th">Prioridad</th>
+                    <th class="data-table__th">Estado</th>
+                  </tr>
+                </thead>
+                <tbody class="data-table__body" id="tbody-dashboard-incidencias">
+                  <!-- Inyectado dinámicamente -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VISTA 2: INSTALACIONES                    -->
+      <!-- ========================================== -->
+      <section class="view-section" id="view-instalaciones" role="tabpanel" aria-labelledby="tab-instalaciones" hidden>
+        <header class="section-header">
+          <div>
+            <h2 class="section-header__title">Directorio de Instalaciones</h2>
+            <p class="section-header__description">Gestión de edificios públicos, dependencias y complejos.</p>
+          </div>
+          <div class="section-header__actions">
+            <button class="btn btn--primary" id="btn-nueva-instalacion" type="button">
+              ➕ Nueva Instalación
+            </button>
+          </div>
+        </header>
+
+        <div class="card">
+          <div class="card__body">
+            <div class="data-table-wrapper">
+              <table class="data-table" id="table-instalaciones" aria-label="Listado de instalaciones">
+                <thead class="data-table__head">
+                  <tr class="data-table__row">
+                    <th class="data-table__th">Nombre</th>
+                    <th class="data-table__th">Dirección</th>
+                    <th class="data-table__th">Tipo</th>
+                    <th class="data-table__th">Equipos</th>
+                    <th class="data-table__th">Incidencias Activas</th>
+                    <th class="data-table__th data-table__th--actions">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody class="data-table__body" id="tbody-instalaciones">
+                  <!-- Inyectado dinámicamente -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VISTA 3: EQUIPOS                          -->
+      <!-- ========================================== -->
+      <section class="view-section" id="view-equipos" role="tabpanel" aria-labelledby="tab-equipos" hidden>
+        <header class="section-header">
+          <div>
+            <h2 class="section-header__title">Inventario de Equipos</h2>
+            <p class="section-header__description">Catálogo técnico y control de operatividad de maquinaria y sistemas.</p>
+          </div>
+          <div class="section-header__actions">
+            <button class="btn btn--primary" id="btn-nuevo-equipo" type="button">
+              ➕ Nuevo Equipo
+            </button>
+          </div>
+        </header>
+
+        <!-- Barra de filtros BEM: .filters-bar -->
+        <div class="filters-bar">
+          <div class="filters-bar__group">
+            <label class="filters-bar__label" for="filter-equipo-instalacion">Filtrar por Instalación:</label>
+            <select class="filters-bar__select" id="filter-equipo-instalacion">
+              <option value="">Todas las instalaciones</option>
+            </select>
+          </div>
+          <div class="filters-bar__group">
+            <label class="filters-bar__label" for="filter-equipo-estado">Filtrar por Estado:</label>
+            <select class="filters-bar__select" id="filter-equipo-estado">
+              <option value="">Todos los estados</option>
+              <option value="OPERATIVO">Operativo</option>
+              <option value="AVERIADO">Averiado</option>
+              <option value="EN_MANTENIMIENTO">En Mantenimiento</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__body">
+            <div class="data-table-wrapper">
+              <table class="data-table" id="table-equipos" aria-label="Listado de equipos">
+                <thead class="data-table__head">
+                  <tr class="data-table__row">
+                    <th class="data-table__th">Equipo</th>
+                    <th class="data-table__th">Código / Serie</th>
+                    <th class="data-table__th">Instalación</th>
+                    <th class="data-table__th">Categoría</th>
+                    <th class="data-table__th">Estado</th>
+                    <th class="data-table__th data-table__th--actions">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody class="data-table__body" id="tbody-equipos">
+                  <!-- Inyectado dinámicamente -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VISTA 4: INCIDENCIAS                      -->
+      <!-- ========================================== -->
+      <section class="view-section" id="view-incidencias" role="tabpanel" aria-labelledby="tab-incidencias" hidden>
+        <header class="section-header">
+          <div>
+            <h2 class="section-header__title">Gestión de Averías e Incidencias</h2>
+            <p class="section-header__description">Registro de fallos, seguimiento técnico y resolución de averías.</p>
+          </div>
+          <div class="section-header__actions">
+            <button class="btn btn--danger" id="btn-nueva-incidencia" type="button">
+              🚨 Reportar Avería
+            </button>
+          </div>
+        </header>
+
+        <!-- Barra de filtros BEM: .filters-bar -->
+        <div class="filters-bar">
+          <div class="filters-bar__group">
+            <label class="filters-bar__label" for="filter-incidencia-estado">Estado:</label>
+            <select class="filters-bar__select" id="filter-incidencia-estado">
+              <option value="">Todos los estados</option>
+              <option value="ABIERTA">Abierta</option>
+              <option value="EN_PROGRESO">En Progreso</option>
+              <option value="RESUELTA">Resuelta</option>
+              <option value="CERRADA">Cerrada</option>
+            </select>
+          </div>
+          <div class="filters-bar__group">
+            <label class="filters-bar__label" for="filter-incidencia-prioridad">Prioridad:</label>
+            <select class="filters-bar__select" id="filter-incidencia-prioridad">
+              <option value="">Todas las prioridades</option>
+              <option value="CRITICA">Crítica</option>
+              <option value="ALTA">Alta</option>
+              <option value="MEDIA">Media</option>
+              <option value="BAJA">Baja</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__body">
+            <div class="data-table-wrapper">
+              <table class="data-table" id="table-incidencias" aria-label="Listado de incidencias">
+                <thead class="data-table__head">
+                  <tr class="data-table__row">
+                    <th class="data-table__th">Fecha</th>
+                    <th class="data-table__th">Incidencia / Título</th>
+                    <th class="data-table__th">Equipo e Instalación</th>
+                    <th class="data-table__th">Prioridad</th>
+                    <th class="data-table__th">Estado</th>
+                    <th class="data-table__th data-table__th--actions">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody class="data-table__body" id="tbody-incidencias">
+                  <!-- Inyectado dinámicamente -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Pie de página BEM: .app-footer -->
+    <footer class="app-footer">
+      <p class="app-footer__text">Contratia Mini &copy; 2026 - Módulo DAW - Proyecto de Gestión de Instalaciones y Mantenimiento Técnico</p>
+    </footer>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODALES ACCESIBLES BEM: .modal                           -->
+  <!-- ======================================================== -->
+
+  <!-- Modal 1: Formulario Instalación -->
+  <div class="modal" id="modal-instalacion" role="dialog" aria-modal="true" aria-labelledby="modal-instalacion-title" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog">
+      <header class="modal__header">
+        <h3 class="modal__title" id="modal-instalacion-title">Nueva Instalación</h3>
+        <button class="modal__close" type="button" aria-label="Cerrar modal" data-close-modal>&times;</button>
+      </header>
+      <form class="modal__form" id="form-instalacion">
+        <input type="hidden" id="instalacion-id">
+        <div class="modal__body">
+          <div class="form-group">
+            <label class="form-group__label" for="instalacion-nombre">Nombre de la Instalación *</label>
+            <input class="form-group__input" type="text" id="instalacion-nombre" required placeholder="Ej: Biblioteca Pública Central">
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="instalacion-direccion">Dirección / Ubicación *</label>
+            <input class="form-group__input" type="text" id="instalacion-direccion" required placeholder="Ej: Calle Mayor 12, Distrito Centro">
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="instalacion-tipo">Tipo o Uso *</label>
+            <input class="form-group__input" type="text" id="instalacion-tipo" required placeholder="Ej: Educativo / Cultural, Sanitario, Deportivo">
+          </div>
+        </div>
+        <footer class="modal__footer">
+          <button class="btn btn--secondary" type="button" data-close-modal>Cancelar</button>
+          <button class="btn btn--primary" type="submit" id="btn-save-instalacion">Guardar Instalación</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Formulario Equipo -->
+  <div class="modal" id="modal-equipo" role="dialog" aria-modal="true" aria-labelledby="modal-equipo-title" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog">
+      <header class="modal__header">
+        <h3 class="modal__title" id="modal-equipo-title">Nuevo Equipo Técnico</h3>
+        <button class="modal__close" type="button" aria-label="Cerrar modal" data-close-modal>&times;</button>
+      </header>
+      <form class="modal__form" id="form-equipo">
+        <input type="hidden" id="equipo-id">
+        <div class="modal__body">
+          <div class="form-group">
+            <label class="form-group__label" for="equipo-instalacion-id">Instalación Perteneciente *</label>
+            <select class="form-group__select" id="equipo-instalacion-id" required>
+              <option value="">Seleccione una instalación...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="equipo-nombre">Nombre del Equipo *</label>
+            <input class="form-group__input" type="text" id="equipo-nombre" required placeholder="Ej: Ascensor Principal - Bloque A">
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="equipo-codigo-serie">Código de Serie / Identificador Único *</label>
+            <input class="form-group__input" type="text" id="equipo-codigo-serie" required placeholder="Ej: ASC-LIB-001">
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="equipo-tipo">Categoría / Tipo de Equipo *</label>
+            <input class="form-group__input" type="text" id="equipo-tipo" required placeholder="Ej: Elevación, Climatización, Calefacción, Eléctrico">
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="equipo-estado">Estado Operativo Inicial</label>
+            <select class="form-group__select" id="equipo-estado">
+              <option value="OPERATIVO">Operativo</option>
+              <option value="AVERIADO">Averiado</option>
+              <option value="EN_MANTENIMIENTO">En Mantenimiento</option>
+            </select>
+          </div>
+        </div>
+        <footer class="modal__footer">
+          <button class="btn btn--secondary" type="button" data-close-modal>Cancelar</button>
+          <button class="btn btn--primary" type="submit" id="btn-save-equipo">Guardar Equipo</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: Formulario Incidencia / Avería -->
+  <div class="modal" id="modal-incidencia" role="dialog" aria-modal="true" aria-labelledby="modal-incidencia-title" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog">
+      <header class="modal__header">
+        <h3 class="modal__title" id="modal-incidencia-title">Reportar Avería o Incidencia</h3>
+        <button class="modal__close" type="button" aria-label="Cerrar modal" data-close-modal>&times;</button>
+      </header>
+      <form class="modal__form" id="form-incidencia">
+        <input type="hidden" id="incidencia-id">
+        <div class="modal__body">
+          <div class="form-group">
+            <label class="form-group__label" for="incidencia-equipo-id">Equipo Técnico Afectado *</label>
+            <select class="form-group__select" id="incidencia-equipo-id" required>
+              <option value="">Seleccione el equipo afectado...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="incidencia-titulo">Título descriptivo del fallo *</label>
+            <input class="form-group__input" type="text" id="incidencia-titulo" required placeholder="Ej: Bloqueo entre plantas 2 y 3">
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="incidencia-descripcion">Descripción detallada de la avería *</label>
+            <textarea class="form-group__textarea" id="incidencia-descripcion" rows="3" required placeholder="Describa el comportamiento anómalo, síntomas y urgencia..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="incidencia-prioridad">Prioridad / Gravedad *</label>
+            <select class="form-group__select" id="incidencia-prioridad" required>
+              <option value="BAJA">Baja</option>
+              <option value="MEDIA" selected>Media</option>
+              <option value="ALTA">Alta (Marca el equipo como Averiado)</option>
+              <option value="CRITICA">Crítica (Intervención urgente)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="incidencia-estado">Estado de la Incidencia</label>
+            <select class="form-group__select" id="incidencia-estado">
+              <option value="ABIERTA" selected>Abierta</option>
+              <option value="EN_PROGRESO">En Progreso</option>
+              <option value="RESUELTA">Resuelta</option>
+              <option value="CERRADA">Cerrada</option>
+            </select>
+          </div>
+        </div>
+        <footer class="modal__footer">
+          <button class="btn btn--secondary" type="button" data-close-modal>Cancelar</button>
+          <button class="btn btn--danger" type="submit" id="btn-save-incidencia">Registrar Incidencia</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 4: Detalle de Instalación y sus Equipos -->
+  <div class="modal" id="modal-detalle-instalacion" role="dialog" aria-modal="true" aria-labelledby="modal-detalle-title" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog modal__dialog--lg">
+      <header class="modal__header">
+        <h3 class="modal__title" id="modal-detalle-title">Detalle de la Instalación</h3>
+        <button class="modal__close" type="button" aria-label="Cerrar modal" data-close-modal>&times;</button>
+      </header>
+      <div class="modal__body" id="modal-detalle-content">
+        <!-- Contenido dinámico -->
+      </div>
+      <footer class="modal__footer">
+        <button class="btn btn--secondary" type="button" data-close-modal>Cerrar</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal 5: Confirmación de Eliminación -->
+  <div class="modal" id="modal-confirmar" role="dialog" aria-modal="true" aria-labelledby="modal-confirmar-title" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog modal__dialog--sm">
+      <header class="modal__header">
+        <h3 class="modal__title" id="modal-confirmar-title">Confirmar Eliminación</h3>
+        <button class="modal__close" type="button" aria-label="Cerrar modal" data-close-modal>&times;</button>
+      </header>
+      <div class="modal__body">
+        <p id="modal-confirmar-mensaje" class="modal__confirm-text">¿Está seguro de que desea eliminar este registro?</p>
+      </div>
+      <footer class="modal__footer">
+        <button class="btn btn--secondary" type="button" data-close-modal>Cancelar</button>
+        <button class="btn btn--danger" type="button" id="btn-confirmar-eliminar">Eliminar definitivamente</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Contenedor flotante de notificaciones Toast BEM: .toast-container -->
+  <aside class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></aside>
+
+  <!-- Scripts Vanilla JavaScript (Fase 4) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

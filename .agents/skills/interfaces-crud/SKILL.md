@@ -27,9 +27,15 @@ Esta Skill define los principios y directrices técnicas para construir interfac
 
 ---
 
-## 2. CSS3 Moderno y Diseño Responsivo
+## 2. CSS3 Moderno, Metodología BEM y Diseño Responsivo
 
-1. **Variables CSS (Custom Properties):**
+1. **Metodología BEM (Bloque__Elemento--Modificador):**
+   * Estructurar todas las clases CSS siguiendo estrictamente la convención BEM para garantizar modularidad, evitar colisiones de especificidad y facilitar el mantenimiento:
+     * **Bloque (`.bloque`):** Componente autónomo con significado (`.app-header`, `.metric-card`, `.data-table`, `.modal`, `.btn`, `.badge`, `.toast`).
+     * **Elemento (`.bloque__elemento`):** Parte interna dependiente del bloque (`.metric-card__value`, `.data-table__row`, `.modal__header`, `.form-group__label`).
+     * **Modificador (`.bloque--modificador` o `.bloque__elemento--modificador`):** Variante visual o de estado (`.metric-card--danger`, `.btn--primary`, `.badge--averiado`, `.nav-tabs__btn--active`).
+
+2. **Variables CSS (Custom Properties):**
    * Centralizar paleta de colores, tipografías, espaciados y radios de borde en `:root`.
    * Colores de estado estandarizados:
      * Operativo / Éxito: Verde (ej. `#10b981`).
@@ -37,7 +43,7 @@ Esta Skill define los principios y directrices técnicas para construir interfac
      * En Mantenimiento / Progreso: Amarillo/Naranja (ej. `#f59e0b`).
      * Información / Neutro: Azul/Gris (ej. `#3b82f6` / `#6b7280`).
 
-2. **Diseño flexible y adaptable:**
+3. **Diseño flexible y adaptable:**
    * Implementar layouts usando CSS Grid para paneles/dashboards y Flexbox para barras de navegación, botones y tarjetas.
    * Media queries limpias (`@media (max-width: 768px)`) que aseguren legibilidad en pantallas móviles y de escritorio.
    * En tablas de datos, habilitar contenedor con `overflow-x: auto` o adaptar a formato de tarjetas en dispositivos estrechos.

@@ -185,7 +185,7 @@ erDiagram
 - [x] **Fase 1: Estructura del Proyecto y Base de Datos**
 - [x] **Fase 1B: Creación de Skills Personalizadas (`api-rest` e `interfaces-crud`)**
 - [x] **Fase 2: Backend y API REST**
-- [ ] **Fase 3: Interfaz de Usuario (Frontend Vanilla)**
+- [x] **Fase 3: Interfaz de Usuario (Frontend Vanilla)**
 - [ ] **Fase 4: Lógica de Integración Cliente-Servidor (Fetch API)**
 - [ ] **Fase 5: Pruebas de Integración, Validación y Cierre**
 
@@ -218,14 +218,15 @@ erDiagram
 - [x] Desarrollar endpoint de métricas/resumen para el panel de control (`/api/dashboard/stats`).
 
 #### 🔹 Fase 3: Interfaz de Usuario (Frontend Vanilla)
-*Estado: Pendiente (Guiada por Skill `interfaces-crud`)*
-- [ ] Crear estructura HTML5 semántica en `public/index.html` con barra de navegación y contenedor principal.
-- [ ] Diseñar estilos CSS3 modernos, limpios y responsivos (variables CSS, cards, badges de estado/prioridad).
-- [ ] Diseñar componentes de vista:
-  - [ ] Panel Dashboard (tarjetas métricas de instalaciones, equipos operativos/averiados, incidencias pendientes).
-  - [ ] Sección de Instalaciones (listado y modal/formulario de alta y edición).
-  - [ ] Sección de Equipos (listado con filtros por instalación/estado y formulario de alta/edición).
-  - [ ] Sección de Incidencias (listado con badges y formulario para reportar o resolver averías).
+*Estado: Completada (Guiada por Skill `interfaces-crud` y metodología BEM)*
+- [x] Crear estructura HTML5 semántica en `public/index.html` con barra de navegación y contenedor principal.
+- [x] Diseñar estilos CSS3 modulares utilizando la metodología **BEM (Bloque__Elemento--Modificador)** con variables CSS, reset moderno y diseño responsive adaptativo.
+- [x] Diseñar componentes de vista bajo estándar BEM:
+  - [x] Panel Dashboard (`.dashboard`, `.metric-card`, `.metric-card--danger`, etc.).
+  - [x] Sección de Instalaciones (`.installations`, listado en tarjetas/tabla y modal accesible de formulario).
+  - [x] Sección de Equipos (`.equipment`, filtros por instalación/estado, tabla responsive y modal de formulario).
+  - [x] Sección de Incidencias (`.incidents`, badges de prioridad/estado `.badge--[estado]`, listado y modal de averías).
+  - [x] Componentes transversales BEM: modales (`.modal`), botones (`.btn`), tablas (`.data-table`), formularios (`.form-group`) y notificaciones flotantes (`.toast`).
 
 #### 🔹 Fase 4: Lógica de Integración Cliente-Servidor (Fetch API)
 *Estado: Pendiente (Guiada por Skills `api-rest` e `interfaces-crud`)*
@@ -244,4 +245,4 @@ erDiagram
 
 ---
 
-> ⚠️ **Estado actual:** Fases 1, 1B y 2 completadas con éxito. A la espera de tu revisión antes de iniciar la Fase 3 (Interfaz de Usuario Frontend Vanilla).
+> ⚠️ **Estado actual:** Fases 1, 1B, 2 y 3 completadas con éxito. A la espera de tu revisión antes de iniciar la Fase 4 (Lógica de Integración Cliente-Servidor con Fetch API).
